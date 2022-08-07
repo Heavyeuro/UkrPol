@@ -8,12 +8,17 @@ from sklearn.preprocessing import LabelEncoder
 # Can be replaced in future by Label Encoding for categorical variable
 def prepare_dataset_core(name_csv: str):
     df = ca.read_csv(name_csv)
+    total = df.isnull().sum().sort_values(ascending=False)
+    percent = (df.isnull().sum()/df.isnull().count()).sort_values(ascending=False)
+    missing_data = pd.concat([total, percent], axis=1, keys=['Total', 'Percent'])
+    missing_data.head(20)
 
     sid = simple_imputing_data(df, df)
     X = sid[0]
     # df = apply_encoder(sid[0])
     X['date'] = LabelEncoder().fit_transform(X['date'])
-    return X.drop(columns=['tests_units'])
+    # return X.drop(columns=['tests_units'])
+    return X
 
 
 # Replacing missing values (imputing) according to certain strategy

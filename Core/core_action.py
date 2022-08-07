@@ -6,7 +6,7 @@ from pandas import DataFrame
 
 
 def read_csv(file_name):
-    return pd.read_csv('../../CsvStorage/' + file_name)
+    return pd.read_csv(r'..\CsvStorage' + file_name)
 
 
 # Replace each val in appropriate cols
