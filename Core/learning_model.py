@@ -196,9 +196,7 @@ def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=35):
         test_predict_ = scaler.inverse_transform(test_predict_)
         y_test_ = scaler.inverse_transform([y_test_])
 
-        # Get the root mean squared error (RMSE) and MAE
-        score_rmse = np.sqrt(mean_squared_error(y_test_[0], test_predict_[:, 0]))
-        score_mape = mean_absolute_percentage_error(y_test_[0], test_predict_[:, 0])
+        score_rmse, score_mape = estimate_model(y_test_, test_predict_)
 
         if best_mape > score_mape or best_rmse > score_rmse:
             best_mape = score_mape
@@ -211,3 +209,8 @@ def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=35):
 
     return best_fit_model
 
+
+def estimate_model(y_test, test_predict):
+    score_rmse = np.sqrt(mean_squared_error(y_test[0], test_predict[:, 0]))
+    score_mape = mean_absolute_percentage_error(y_test[0], test_predict[:, 0])
+    return score_rmse, score_mape

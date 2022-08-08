@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="13fe9cf4-5773-4b88-ad6b-60e309504c24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/core_action.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/core_action.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/learning_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/learning_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Core/main_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/main_pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Core/results.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -99,6 +97,11 @@
           <url>file://$PROJECT_DIR$/Core/learning_model.py</url>
           <line>99</line>
           <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Core/learning_model.py</url>
+          <line>196</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
