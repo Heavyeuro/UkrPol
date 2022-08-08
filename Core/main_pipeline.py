@@ -21,7 +21,7 @@ if __name__ == '__main__':
     sns.pairplot(dataframe[cols], size=2.5)
     plt.show(block=False)
     for col in col_to_predict:
-        lm.build_and_score_ml_model_core(dataframe, col, fileNames[0])
+        lm.MAIN_build_and_score_ml_model_core(dataframe, col, fileNames[0])
 
 
     patients_info_filename = rf'\{fileNames[1]}.csv'
@@ -32,6 +32,6 @@ if __name__ == '__main__':
     sns.pairplot(dataframe[cols], size=2.5)
     plt.show(block=False)
     for col in col_to_predict:
-        lm.build_and_score_ml_model_core(dataframe, col, fileNames[1])
+        lm.MAIN_build_and_score_ml_model_core(dataframe, col, fileNames[1])
     plt.show()
     input('Enter your input:')

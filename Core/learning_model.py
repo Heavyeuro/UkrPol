@@ -9,6 +9,7 @@ from sklearn.preprocessing import MinMaxScaler
 from keras.models import Sequential
 from keras.layers import Dense, LSTM
 from sklearn.metrics import mean_absolute_percentage_error
+import core_action as ca
 
 start_date = '01-25-2022'
 delimiter_date = '02-24-2022'
@@ -16,7 +17,25 @@ last_date = '03-23-2022'
 IS_DEBUG_MODE_ON = True
 
 
-# NEW
+def MAIN_build_and_score_ml_model_core(df: DataFrame, col_to_predict: str, fileName: str):
+    best_model = build_estimate(df, col_to_predict, fileName)
+    x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict, start_date, delimiter_date)
+
+    # Printing training prediction results
+    test_predict = predict(best_model, scaler, x_test)
+    plot(test_predict, df, col_to_predict, start_date, delimiter_date)
+    plt.show(block=False)
+    # TODO: Add estimation "before"
+
+    x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict, delimiter_date, last_date)
+    real_predict = predict(best_model, scaler, x_test)
+    plot(real_predict, df, col_to_predict, delimiter_date, last_date)
+    # TODO: Add estimation "after"
+
+    # TBD
+    # plot_final(real_predict, df, len(df['date']), 25, col_to_predict)
+
+
 def get_train_and_test_data(df, dependent_variables, delimiter_date, last_date, col_to_predict):
     cols = ['date'] + dependent_variables
     cols.append(col_to_predict)
@@ -58,22 +77,6 @@ def create_dataset(dataset_creation, look_back_creation=1):
     return np.array(X), np.array(Y)
 
 
-def build_and_score_ml_model_core(df: DataFrame, col_to_predict: str, fileName: str):
-    best_model = build_estimate(df, col_to_predict, fileName)
-    x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict, start_date, delimiter_date)
-
-    # Printing training prediction results
-    test_predict = predict(best_model, scaler, x_test)
-    plot(test_predict, df, col_to_predict)
-    plt.show(block=False)
-    # Printing real prediction results
-    # fh, df_fh = prepare_fh(df, col_to_predict)
-    x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict, delimiter_date, last_date)
-    real_predict = predict(best_model, scaler, x_test)
-    # TBD
-    # plot_final(real_predict, df, len(df['date']), 25, col_to_predict)
-
-
 # # Making x_for_prediction
 # def prepare_fh(df, col_to_predict: str):
 #     fh_initial_value = len(df['date'])
@@ -93,15 +96,15 @@ def predict(model, scaler, x_for_prediction):
     return test_predict_[:, 0]
 
 
-def plot(test_predict: np.ndarray, df: DataFrame, col_to_predict):
-    x_train, y_train, x_valid, y_valid = prepare_data_2d(df, col_to_predict, start_date, delimiter_date)
+def plot(test_predict: np.ndarray, df: DataFrame, col_to_predict, start_index, finish_index):
+    x_train, y_train, x_valid, y_valid = prepare_data_2d(df, col_to_predict, start_index, finish_index)
     plot_series(DataFrame(y_train.to_numpy().astype(float), index=x_train.index),
                 DataFrame(y_valid.to_numpy().astype(float), index=y_valid.index),
                 DataFrame(test_predict, index=x_valid.index), labels=["y_train", "y_test", "y_pred"])
 
     plt.show(block=False)
 
-
+# Plot prediction before and after war with actual data
 # def plot_final(test_predict: np.ndarray, df: DataFrame, real_length, prediction_days, col_to_predict):
 #     x_train, y_train = pd.DataFrame(df.iloc[:real_length, 0]), pd.DataFrame(df.iloc[:real_length, 1])
 #     x_valid, y_valid = pd.DataFrame(df.iloc[real_length:, 0]), pd.DataFrame(df.iloc[real_length:, 1])
@@ -123,15 +126,18 @@ def getTrainSize(df, train_data_start, train_data_start_finish):
     d1 = datetime.strptime(train_data_start, "%m-%d-%Y")
     d2 = datetime.strptime(train_data_start_finish, "%m-%d-%Y")
     # difference between dates in timedelta
-    rslt_df = df.loc[df['dateReal'] == train_data_start_finish.replace("-", "/").strip('0')]
     delta = d2 - d1
-    return int(rslt_df.first_valid_index() - delta.days)
+
+    finish_date_index = df.loc[df['dateReal'] == train_data_start_finish.replace("-", "/").strip('0')].first_valid_index()
+
+    df_cut = df.loc[df['date'] < finish_date_index]
+    return int(finish_date_index - delta.days), df_cut
 
 
 def prepare_data_2d(df, col_to_predict: str, train_data_start, train_data_start_finish):
-    train_size = getTrainSize(df, train_data_start, train_data_start_finish)
+    train_size, varying_df = getTrainSize(df, train_data_start, train_data_start_finish)
 
-    univariate_df = df[['date', col_to_predict]].copy()
+    univariate_df = varying_df[['date', col_to_predict]].copy()
     univariate_df.columns = ['ds', 'y']
 
     x_train, y_train = pd.DataFrame(univariate_df.iloc[:train_size, 0]), pd.DataFrame(univariate_df.iloc[:train_size, 1])
@@ -140,9 +146,9 @@ def prepare_data_2d(df, col_to_predict: str, train_data_start, train_data_start_
 
 
 def prepare_data_3d(df, col_to_predict: str, train_data_start, train_data_start_finish):
-    train_size = getTrainSize(df, train_data_start, train_data_start_finish)
+    train_size, varying_df = getTrainSize(df, train_data_start, train_data_start_finish)
 
-    univariate_df = df[['date', col_to_predict]].copy()
+    univariate_df = varying_df[['date', col_to_predict]].copy()
     univariate_df.columns = ['ds', 'y']
 
     data = univariate_df.filter(['y'])
@@ -166,7 +172,7 @@ def prepare_data_3d(df, col_to_predict: str, train_data_start, train_data_start_
     return x_train, y_train, x_test, y_test, scaler
 
 
-def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=15):
+def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=35):
     best_rmse = 2000
     best_mape = 1
     best_epoch = 0
@@ -201,14 +207,7 @@ def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=15):
             best_rmse = score_rmse
 
     # writeToFile(f"{fileName} {col_to_predict} RMSE:" + str(best_rmse))
-    writeToFile(f"{fileName} {col_to_predict} MAPE:" + str(best_mape))
-    writeToFile(f"{fileName} {col_to_predict} best epoch:" + str(best_epoch))
+    ca.writeToFile(f"{fileName} {col_to_predict} MAPE:" + str(best_mape) + "; epoch:" + str(best_epoch))
 
     return best_fit_model
 
-
-def writeToFile(str: str):
-    from datetime import datetime
-    now = datetime.now()
-    with open('results.txt', 'a') as f:
-        f.writelines('\n'+now.strftime("%H:%M:%S")+': '+str)

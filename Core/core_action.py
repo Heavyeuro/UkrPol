@@ -36,3 +36,10 @@ def detect_vals(obj_to_describe, val, exclude_col=[]):
     obj_to_describe = obj_to_describe.drop(exclude_col, axis=1)
     missing_val_count_by_column = (obj_to_describe.isin([val]).sum())
     return (missing_val_count_by_column)
+
+
+def writeToFile(str: str):
+    from datetime import datetime
+    now = datetime.now()
+    with open('results.txt', 'a') as f:
+        f.writelines('\n'+now.strftime("%H:%M:%S")+': '+str)
