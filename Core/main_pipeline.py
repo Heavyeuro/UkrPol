@@ -27,7 +27,6 @@ if __name__ == '__main__':
     patients_info_filename = rf'\{fileNames[1]}.csv'
     dataframe = pds.prepare_dataset_core(patients_info_filename)
     # building ML
-    col_to_predict = ['new_cases', 'new_deaths']
     sns.set()
     cols = ['new_cases', 'new_deaths', 'date']
     sns.pairplot(dataframe[cols], size=2.5)

@@ -1,112 +1,21 @@
 
-08:44:44: covidDatapol new_cases RMSE:4424.782249793042
-08:44:44: covidDatapol new_cases MAPE:0.4372694517691853
-08:44:44: covidDatapol new_cases best epoch:2
-08:52:31: covidDatapol new_cases RMSE:4163.614378749214
-08:52:31: covidDatapol new_cases MAPE:0.39028161632031433
-08:52:31: covidDatapol new_cases best epoch:2
-08:54:57: covidDatapol new_cases RMSE:4889.816529546821
-08:54:57: covidDatapol new_cases MAPE:0.49072545367281556
-08:54:57: covidDatapol new_cases best epoch:2
-08:56:11: covidDatapol new_cases RMSE:3912.0516094965305
-08:56:11: covidDatapol new_cases MAPE:0.36540471061771673
-08:56:11: covidDatapol new_cases best epoch:2
-09:07:10: covidDatapol new_cases RMSE:3613.1879033515174
-09:07:10: covidDatapol new_cases MAPE:0.3055216274656939
-09:07:10: covidDatapol new_cases best epoch:2
-09:43:41: covidDatapol new_cases RMSE:4477.053229835615
-09:43:41: covidDatapol new_cases MAPE:0.2569956742601129
-09:43:41: covidDatapol new_cases best epoch:2
-09:47:12: covidDatapol new_cases RMSE:3828.965230652914
-09:47:12: covidDatapol new_cases MAPE:0.3298775638617438
-09:47:12: covidDatapol new_cases best epoch:2
-09:48:08: covidDatapol new_cases RMSE:4393.026639558495
-09:48:08: covidDatapol new_cases MAPE:0.42983088657524904
-09:48:08: covidDatapol new_cases best epoch:2
-09:49:32: covidDatapol new_cases RMSE:3669.9102746491485
-09:49:32: covidDatapol new_cases MAPE:0.2512173467510436
-09:49:32: covidDatapol new_cases best epoch:2
-09:52:56: covidDatapol new_cases RMSE:3644.4643530455924
-09:52:56: covidDatapol new_cases MAPE:0.24171748373516344
-09:52:56: covidDatapol new_cases best epoch:2
-10:02:08: covidDatapol new_cases RMSE:3635.9175490623716
-10:02:08: covidDatapol new_cases MAPE:0.27668559745288546
-10:02:08: covidDatapol new_cases best epoch:2
-10:05:29: covidDatapol new_cases RMSE:4340.803372754832
-10:05:29: covidDatapol new_cases MAPE:0.4280760672568728
-10:05:29: covidDatapol new_cases best epoch:2
-10:06:58: covidDatapol new_cases RMSE:3754.7411850130097
-10:06:58: covidDatapol new_cases MAPE:0.2561374612627853
-10:06:58: covidDatapol new_cases best epoch:2
-10:11:42: covidDatapol new_cases RMSE:4485.878763086314
-10:11:42: covidDatapol new_cases MAPE:0.2576798955049226
-10:11:42: covidDatapol new_cases best epoch:2
-10:15:49: covidDatapol new_cases RMSE:3646.8704252645953
-10:15:49: covidDatapol new_cases MAPE:0.3035556797299714
-10:15:49: covidDatapol new_cases best epoch:2
-10:17:15: covidDatapol new_cases RMSE:3716.7253388599147
-10:17:15: covidDatapol new_cases MAPE:0.25555089440687184
-10:17:15: covidDatapol new_cases best epoch:2
-10:22:47: covidDatapol new_cases RMSE:3756.401591702043
-10:22:47: covidDatapol new_cases MAPE:0.295497319382499
-10:22:47: covidDatapol new_cases best epoch:2
-10:28:26: covidDatapol new_cases RMSE:3938.7009053751253
-10:28:26: covidDatapol new_cases MAPE:0.33959026860054264
-10:28:26: covidDatapol new_cases best epoch:2
-10:47:33: covidDatapol new_cases RMSE:3621.887228737557
-10:47:33: covidDatapol new_cases MAPE:0.2836074869696119
-10:47:33: covidDatapol new_cases best epoch:2
-10:50:39: covidDatapol new_cases RMSE:4001.2089608262104
-10:50:39: covidDatapol new_cases MAPE:0.22835709440113006
-10:50:39: covidDatapol new_cases best epoch:2
-10:52:25: covidDatapol new_cases RMSE:3716.385113863151
-10:52:25: covidDatapol new_cases MAPE:0.33025281061424794
-10:52:25: covidDatapol new_cases best epoch:2
-10:54:04: covidDatapol new_cases RMSE:3930.359630776359
-10:54:04: covidDatapol new_cases MAPE:0.2290732926967628
-10:54:04: covidDatapol new_cases best epoch:2
-11:01:45: covidDatapol new_cases RMSE:4444.997653217583
-11:01:45: covidDatapol new_cases MAPE:0.43258101439512836
-11:01:45: covidDatapol new_cases best epoch:2
-11:05:11: covidDatapol new_cases RMSE:3653.4954670024267
-11:05:11: covidDatapol new_cases MAPE:0.24846379523105552
-11:05:11: covidDatapol new_cases best epoch:2
-11:13:45: covidDatapol new_cases RMSE:3705.9871176697566
-11:13:45: covidDatapol new_cases MAPE:0.32248490936666196
-11:13:45: covidDatapol new_cases best epoch:2
-11:22:08: covidDatapol new_cases RMSE:3739.9774894377692
-11:22:08: covidDatapol new_cases MAPE:0.28751011568866564
-11:22:08: covidDatapol new_cases best epoch:2
-12:04:22: covidDatapol new_cases RMSE:6157.697407028291
-12:04:22: covidDatapol new_cases MAPE:0.6201020387555463
-12:04:22: covidDatapol new_cases best epoch:2
-12:06:03: covidDatapol new_cases RMSE:4316.618308659198
-12:06:03: covidDatapol new_cases MAPE:0.42555272100722785
-12:06:03: covidDatapol new_cases best epoch:2
-12:07:22: covidDatapol new_cases RMSE:3746.304739612427
-12:07:22: covidDatapol new_cases MAPE:0.32577876278377527
-12:07:22: covidDatapol new_cases best epoch:2
-12:07:31: covidDataukr new_cases RMSE:3942.147317190082
-12:07:31: covidDataukr new_cases MAPE:0.41820859089640333
-12:07:31: covidDataukr new_cases best epoch:2
-12:07:40: covidDataukr new_deaths RMSE:53.663728419401906
-12:07:40: covidDataukr new_deaths MAPE:0.5034828338697706
-12:07:40: covidDataukr new_deaths best epoch:2
-13:11:55: covidDatapol new_cases RMSE:4941.635414214013
-13:11:55: covidDatapol new_cases MAPE:0.5021701267417453
-13:11:55: covidDatapol new_cases best epoch:2
-13:12:05: covidDataukr new_cases RMSE:3642.510401197142
-13:12:05: covidDataukr new_cases MAPE:0.3099799889223217
-13:12:05: covidDataukr new_cases best epoch:2
-13:12:13: covidDataukr new_deaths RMSE:102.11327986069384
-13:12:13: covidDataukr new_deaths MAPE:1.421390148556765
-13:12:13: covidDataukr new_deaths best epoch:2
-13:16:09: covidDatapol new_cases RMSE:3832.4342579553786
-13:16:09: covidDatapol new_cases MAPE:0.2310155199374942
-13:16:09: covidDatapol new_cases best epoch:13
-13:19:50: covidDataukr new_cases RMSE:3619.123871044574
-13:19:50: covidDataukr new_cases MAPE:0.3081468610229831
-13:19:50: covidDataukr new_cases best epoch:12
-13:23:32: covidDataukr new_deaths RMSE:49.02472203957348
-13:23:32: covidDataukr new_deaths MAPE:0.3706419893394318
-13:23:32: covidDataukr new_deaths best epoch:14
+20:07:41: covidDatapol new_cases MAPE:0.35676946841048196
+20:07:41: covidDatapol new_cases best epoch:2
+20:07:50: covidDataukr new_cases MAPE:0.3109850394543545
+20:07:50: covidDataukr new_cases best epoch:2
+20:13:13: covidDatapol new_cases MAPE:0.30178078647283885
+20:13:13: covidDatapol new_cases best epoch:2
+20:13:23: covidDataukr new_cases MAPE:0.346984474376432
+20:13:23: covidDataukr new_cases best epoch:2
+20:26:33: covidDatapol new_cases MAPE:0.2727438751405183
+20:26:33: covidDatapol new_cases best epoch:2
+20:26:43: covidDataukr new_cases MAPE:0.33999797009185617
+20:26:43: covidDataukr new_cases best epoch:2
+20:30:59: covidDatapol new_cases MAPE:0.2977671422074216
+20:30:59: covidDatapol new_cases best epoch:2
+10:26:34: covidDatapol new_cases MAPE:0.5280113775509238
+10:26:34: covidDatapol new_cases best epoch:2
+10:33:03: covidDatapol new_cases MAPE:0.24189005372537872
+10:33:03: covidDatapol new_cases best epoch:2
+10:36:52: covidDataukr new_cases MAPE:0.26918968671241933
+10:36:52: covidDataukr new_cases best epoch:2

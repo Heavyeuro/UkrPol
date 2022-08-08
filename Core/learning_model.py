@@ -10,10 +10,10 @@ from keras.models import Sequential
 from keras.layers import Dense, LSTM
 from sklearn.metrics import mean_absolute_percentage_error
 
-start_date = '2022-01-23'
-delimiter_date = '2022-02-24'
-last_date = '2022-03-23'
-IS_DEBUG_MODE_ON = False
+start_date = '01-25-2022'
+delimiter_date = '02-24-2022'
+last_date = '03-23-2022'
+IS_DEBUG_MODE_ON = True
 
 
 # NEW
@@ -120,11 +120,12 @@ def plot(test_predict: np.ndarray, df: DataFrame, col_to_predict):
 
 
 def getTrainSize(df, train_data_start, train_data_start_finish):
-    d1 = datetime.strptime(train_data_start, "%Y-%m-%d")
-    d2 = datetime.strptime(train_data_start_finish, "%Y-%m-%d")
+    d1 = datetime.strptime(train_data_start, "%m-%d-%Y")
+    d2 = datetime.strptime(train_data_start_finish, "%m-%d-%Y")
     # difference between dates in timedelta
+    rslt_df = df.loc[df['dateReal'] == train_data_start_finish.replace("-", "/").strip('0')]
     delta = d2 - d1
-    return int(len(df) - delta.days)
+    return int(rslt_df.first_valid_index() - delta.days)
 
 
 def prepare_data_2d(df, col_to_predict: str, train_data_start, train_data_start_finish):
@@ -199,7 +200,7 @@ def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=15):
             best_fit_model = model
             best_rmse = score_rmse
 
-    writeToFile(f"{fileName} {col_to_predict} RMSE:" + str(best_rmse))
+    # writeToFile(f"{fileName} {col_to_predict} RMSE:" + str(best_rmse))
     writeToFile(f"{fileName} {col_to_predict} MAPE:" + str(best_mape))
     writeToFile(f"{fileName} {col_to_predict} best epoch:" + str(best_epoch))
 

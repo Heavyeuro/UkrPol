@@ -16,8 +16,9 @@ def prepare_dataset_core(name_csv: str):
     sid = simple_imputing_data(df, df)
     X = sid[0]
     # df = apply_encoder(sid[0])
-    X['date'] = LabelEncoder().fit_transform(X['date'])
-    # return X.drop(columns=['tests_units'])
+    # X['date'] = LabelEncoder().fit_transform(X['date'])
+    X['dateReal'] = X['date']
+    X['date'] = X.index.to_numpy()
     return X
 
 
