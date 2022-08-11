@@ -11,10 +11,16 @@ from keras.layers import Dense, LSTM
 from sklearn.metrics import mean_absolute_percentage_error
 import core_action as ca
 
+# 30 days
 start_date = '01-25-2022'
-delimiter_date = '02-24-2022'
 last_date = '03-23-2022'
-IS_DEBUG_MODE_ON = True
+# 21 days
+# start_date = '02-4-2022'
+# last_date = '03-14-2022'
+
+delimiter_date = '02-24-2022'
+look_back = 1 #29
+IS_DEBUG_MODE_ON = False
 
 
 def MAIN_build_and_score_ml_model_core(df: DataFrame, col_to_predict: str, fileName: str):
@@ -22,31 +28,34 @@ def MAIN_build_and_score_ml_model_core(df: DataFrame, col_to_predict: str, fileN
     x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict, start_date, delimiter_date)
 
     # Printing training prediction results
-    test_predict = predict(best_model, scaler, x_test)
-    plot(test_predict, df, col_to_predict, start_date, delimiter_date)
+    prediction_before = predict(best_model, scaler, x_test)
+    plot(prediction_before, df, col_to_predict, start_date, delimiter_date)
     plt.show(block=False)
-    # TODO: Add estimation "before"
 
     x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict, delimiter_date, last_date)
-    real_predict = predict(best_model, scaler, x_test)
-    plot(real_predict, df, col_to_predict, delimiter_date, last_date)
-    # TODO: Add estimation "after"
+    prediction_after = predict(best_model, scaler, x_test)
+    plot(prediction_after, df, col_to_predict, delimiter_date, last_date)
 
-    # TBD
-    # plot_final(real_predict, df, len(df['date']), 25, col_to_predict)
+    plot_final_and_estimate(prediction_before, prediction_after, df, col_to_predict)
+
+
+# Plot prediction before and after war with actual data
+def plot_final_and_estimate(prediction_before, prediction_after, df, col_to_predict):
+    plot_final(prediction_before, prediction_after, df, col_to_predict)
+
+    # pred = DataFrame(data=test_predict, index=x_valid.index)
+    # plot_series(y_train, pred, labels=[col_to_predict, f"Predicted {prediction_days} days"])
+    # plt.show()
+    # filename = datetime.today().strftime('%Y-%m-%d') + col_to_predict + '.csv'
+    # pred.to_csv(r'P:\NetRepos\CovidDataCollector\CovidAnalyzer\CsvStorage' + filename, parse_dates=[0])
 
 
 def get_train_and_test_data(df, dependent_variables, delimiter_date, last_date, col_to_predict):
-    cols = ['date'] + dependent_variables
-    cols.append(col_to_predict)
-    df = df[cols]
-    df = df.rename(columns={'date': 'ds', 'new_cases': 'y'})
+    cols = (['date'] + dependent_variables).append(col_to_predict)
+    df = df[cols].rename(columns={'date': 'ds', 'new_cases': 'y'})
 
-    mask1 = (df['ds'] <= delimiter_date)
-    mask2 = (df['ds'] >= delimiter_date)
-    X_tr = df.loc[mask1]
-    X_tst = df.loc[mask2].head((datetime.strptime(last_date, "%Y-%m-%d")
-                                - datetime.strptime(delimiter_date, "%Y-%m-%d")).days)
+    X_tr = df.loc[(df['ds'] <= delimiter_date)]
+    X_tst = df.loc[(df['ds'] >= delimiter_date)].head((datetime.strptime(last_date, "%Y-%m-%d") - datetime.strptime(delimiter_date, "%Y-%m-%d")).days)
     return X_tr, X_tst
 
 
@@ -77,25 +86,6 @@ def create_dataset(dataset_creation, look_back_creation=1):
     return np.array(X), np.array(Y)
 
 
-# # Making x_for_prediction
-# def prepare_fh(df, col_to_predict: str):
-#     fh_initial_value = len(df['date'])
-#     df = df[['date', col_to_predict]]
-#
-#     for i in range(fh_initial_value, int(fh_initial_value*1.15)):
-#         df2 = {'date': i, col_to_predict: df[col_to_predict].iloc[-1]}
-#         df = df.append(df2, ignore_index=True)
-#     x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict)
-#
-#     return x_test, df
-
-
-def predict(model, scaler, x_for_prediction):
-    test_predict_ = model.predict(x_for_prediction)
-    test_predict_ = scaler.inverse_transform(test_predict_)
-    return test_predict_[:, 0]
-
-
 def plot(test_predict: np.ndarray, df: DataFrame, col_to_predict, start_index, finish_index):
     x_train, y_train, x_valid, y_valid = prepare_data_2d(df, col_to_predict, start_index, finish_index)
     plot_series(DataFrame(y_train.to_numpy().astype(float), index=x_train.index),
@@ -104,30 +94,23 @@ def plot(test_predict: np.ndarray, df: DataFrame, col_to_predict, start_index, f
 
     plt.show(block=False)
 
-# Plot prediction before and after war with actual data
-# def plot_final(test_predict: np.ndarray, df: DataFrame, real_length, prediction_days, col_to_predict):
-#     x_train, y_train = pd.DataFrame(df.iloc[:real_length, 0]), pd.DataFrame(df.iloc[:real_length, 1])
-#     x_valid, y_valid = pd.DataFrame(df.iloc[real_length:, 0]), pd.DataFrame(df.iloc[real_length:, 1])
-#     x_valid = x_valid.head(prediction_days)
-#     start_pred = int(fabs(len(df['date']) - real_length-len(test_predict)))
-#     test_predict = test_predict[start_pred:]
-#     test_predict = test_predict[:prediction_days]
-#
-#     index = x_valid.index
-#     pred = DataFrame(data=test_predict, index=index)
-#     plot_series(y_train, pred, labels=[col_to_predict, f"Predicted {prediction_days} days"])
-#     plt.show()
-#     filename = datetime.today().strftime('%Y-%m-%d') + col_to_predict + '.csv'
-#     pred.to_csv(r'P:\NetRepos\CovidDataCollector\CovidAnalyzer\CsvStorage' + filename, parse_dates=[0])
-#     print()
+
+def plot_final(predict_before_war: np.ndarray, predict_after_war: np.ndarray, df: DataFrame, col_to_predict):
+    x_train_before, y_train_before, x_valid_before, y_valid_before = prepare_data_2d(df, col_to_predict, start_date, delimiter_date)
+    x_train_after, y_train_after, x_valid_after, y_valid_after = prepare_data_2d(df, col_to_predict, delimiter_date, last_date)
+    x_train, y_train, x_valid, y_valid = prepare_data_2d(df, col_to_predict, start_date, last_date)
+    plot_series(DataFrame(predict_after_war, index=x_valid_after.index),
+                DataFrame(y_train_before.to_numpy().astype(float), index=x_train_before.index),
+                DataFrame(predict_before_war, index=x_valid_before.index),
+                DataFrame(y_valid.to_numpy().astype(float), index=y_valid.index),
+                labels=["predict_after_war", "y_train", "predict_before_war", "y_test"])
+
+    plt.show(block=False)
 
 
 def getTrainSize(df, train_data_start, train_data_start_finish):
-    d1 = datetime.strptime(train_data_start, "%m-%d-%Y")
-    d2 = datetime.strptime(train_data_start_finish, "%m-%d-%Y")
     # difference between dates in timedelta
-    delta = d2 - d1
-
+    delta = datetime.strptime(train_data_start_finish, "%m-%d-%Y") - datetime.strptime(train_data_start, "%m-%d-%Y")
     finish_date_index = df.loc[df['dateReal'] == train_data_start_finish.replace("-", "/").strip('0')].first_valid_index()
 
     df_cut = df.loc[df['date'] < finish_date_index]
@@ -142,7 +125,7 @@ def prepare_data_2d(df, col_to_predict: str, train_data_start, train_data_start_
 
     x_train, y_train = pd.DataFrame(univariate_df.iloc[:train_size, 0]), pd.DataFrame(univariate_df.iloc[:train_size, 1])
     x_valid, y_valid = pd.DataFrame(univariate_df.iloc[train_size:, 0]), pd.DataFrame(univariate_df.iloc[train_size:, 1])
-    return x_train, y_train, x_valid, y_valid
+    return x_train, y_train, x_valid[:-1], y_valid[:-1]
 
 
 def prepare_data_3d(df, col_to_predict: str, train_data_start, train_data_start_finish):
@@ -151,30 +134,25 @@ def prepare_data_3d(df, col_to_predict: str, train_data_start, train_data_start_
     univariate_df = varying_df[['date', col_to_predict]].copy()
     univariate_df.columns = ['ds', 'y']
 
-    data = univariate_df.filter(['y'])
     # Convert the dataframe to a numpy array
-    dataset = data.values
+    dataset = univariate_df.filter(['y']).values
 
     scaler = MinMaxScaler(feature_range=(-1, 0))
     scaled_data = scaler.fit_transform(dataset)
 
-    # Defines the rolling window
-    look_back = 1#29#52
     # Split into train and test sets
     train, test = scaled_data[:train_size-look_back, :], scaled_data[train_size-look_back:, :]
-
     x_train, y_train = create_dataset(train, look_back)
     x_test, y_test = create_dataset(test, look_back)
 
-    # reshape input to be [samples, time steps, features]
     x_train = np.reshape(x_train, (x_train.shape[0], 1, x_train.shape[1]))
     x_test = np.reshape(x_test, (x_test.shape[0], 1, x_test.shape[1]))
     return x_train, y_train, x_test, y_test, scaler
 
 
-def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=35):
+def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=21):
     best_rmse = 2000
-    best_mape = 1
+    best_mape = 0.3
     best_epoch = 0
     min_epoch = 2
     best_fit_model = None
@@ -189,12 +167,8 @@ def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=35):
         y_test_ = y_test
         model = create_model(x_train_, y_train_, x_test_, y_test_, i)
 
-        # Lets predict with the model
-        test_predict_ = model.predict(x_test)
-
-        # invert predictions
-        test_predict_ = scaler.inverse_transform(test_predict_)
-        y_test_ = scaler.inverse_transform([y_test_])
+        test_predict_ = predict(model, scaler, x_test)
+        y_test_ = scaler.inverse_transform([y_test_])[0][:-1] # !!! SHIFT for 1 day
 
         score_rmse, score_mape = estimate_model(y_test_, test_predict_)
 
@@ -204,13 +178,22 @@ def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=35):
             best_fit_model = model
             best_rmse = score_rmse
 
-    # writeToFile(f"{fileName} {col_to_predict} RMSE:" + str(best_rmse))
-    ca.writeToFile(f"{fileName} {col_to_predict} MAPE:" + str(best_mape) + "; epoch:" + str(best_epoch))
+    ca.writeToFile(f"Estimation {fileName} {col_to_predict} MAPE:" + str(best_mape) + "; epoch:" + str(best_epoch))
+
+    if best_fit_model is None:
+        raise AssertionError("None of models were optimal")
 
     return best_fit_model
 
 
+def predict(model, scaler, x_for_prediction):
+    test_predict_ = model.predict(x_for_prediction)
+    test_predict_ = scaler.inverse_transform(test_predict_)
+    return np.delete(test_predict_, 0)  # !!! SHIFT for 1 day
+
+
 def estimate_model(y_test, test_predict):
-    score_rmse = np.sqrt(mean_squared_error(y_test[0], test_predict[:, 0]))
-    score_mape = mean_absolute_percentage_error(y_test[0], test_predict[:, 0])
+    score_rmse = np.sqrt(mean_squared_error(y_test, test_predict))
+    score_mape = mean_absolute_percentage_error(y_test, test_predict)
     return score_rmse, score_mape
+
