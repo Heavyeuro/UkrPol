@@ -25,27 +25,29 @@ IS_DEBUG_MODE_ON = False
 
 def MAIN_build_and_score_ml_model_core(df: DataFrame, col_to_predict: str, fileName: str):
     best_model = build_estimate(df, col_to_predict, fileName)
-    x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict, start_date, delimiter_date)
+    x_train_before, y_train_before, x_test_before, y_test_before, scaler_before = prepare_data_3d(df, col_to_predict, start_date, delimiter_date)
+    x_train_after, y_train_after, x_test_after, y_test_after, scaler_after = prepare_data_3d(df, col_to_predict, delimiter_date, last_date)
+    # Predicting
+    prediction_after = predict(best_model, scaler_after, x_test_after)
+    prediction_before = predict(best_model, scaler_before, x_test_before)
 
-    # Printing training prediction results
-    prediction_before = predict(best_model, scaler, x_test)
-    plot(prediction_before, df, col_to_predict, start_date, delimiter_date)
-    plt.show(block=False)
+    if IS_DEBUG_MODE_ON:
+        plot(prediction_after, df, col_to_predict, delimiter_date, last_date)
+        plot(prediction_before, df, col_to_predict, start_date, delimiter_date)
+        plt.show(block=False)
 
-    x_train, y_train, x_test, y_test, scaler = prepare_data_3d(df, col_to_predict, delimiter_date, last_date)
-    prediction_after = predict(best_model, scaler, x_test)
-    plot(prediction_after, df, col_to_predict, delimiter_date, last_date)
-
-    plot_final_and_estimate(prediction_before, prediction_after, df, col_to_predict)
+    plot_final_and_estimate(prediction_before, prediction_after, df, col_to_predict, fileName)
 
 
 # Plot prediction before and after war with actual data
-def plot_final_and_estimate(prediction_before, prediction_after, df, col_to_predict):
-    plot_final(prediction_before, prediction_after, df, col_to_predict)
+def plot_final_and_estimate(prediction_before, prediction_after, df, col_to_predict, fileName: str):
+    predict_before_war, y_valid_before, predict_after_war, y_valid_after = plot_final(prediction_before, prediction_after, df, col_to_predict)
+    score_rmse_before_war, score_mape_before_war = estimate_model(predict_before_war, y_valid_before)
+    score_rmse_after_war, score_mape_after_war = estimate_model(predict_after_war, y_valid_after)
 
-    # pred = DataFrame(data=test_predict, index=x_valid.index)
-    # plot_series(y_train, pred, labels=[col_to_predict, f"Predicted {prediction_days} days"])
-    # plt.show()
+    ca.writeToFile(f"Estimation before war {fileName} {col_to_predict} MAPE:" + str(score_mape_before_war))
+    ca.writeToFile(f"Estimation after war {fileName} {col_to_predict} MAPE:" + str(score_mape_after_war))
+
     # filename = datetime.today().strftime('%Y-%m-%d') + col_to_predict + '.csv'
     # pred.to_csv(r'P:\NetRepos\CovidDataCollector\CovidAnalyzer\CsvStorage' + filename, parse_dates=[0])
 
@@ -106,6 +108,7 @@ def plot_final(predict_before_war: np.ndarray, predict_after_war: np.ndarray, df
                 labels=["predict_after_war", "y_train", "predict_before_war", "y_test"])
 
     plt.show(block=False)
+    return predict_before_war, y_valid_before, predict_after_war, y_valid_after
 
 
 def getTrainSize(df, train_data_start, train_data_start_finish):
@@ -168,7 +171,7 @@ def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=21):
         model = create_model(x_train_, y_train_, x_test_, y_test_, i)
 
         test_predict_ = predict(model, scaler, x_test)
-        y_test_ = scaler.inverse_transform([y_test_])[0][:-1] # !!! SHIFT for 1 day
+        y_test_ = scaler.inverse_transform([y_test_])[0][:-1]  # !!! SHIFT for 1 day
 
         score_rmse, score_mape = estimate_model(y_test_, test_predict_)
 
@@ -178,7 +181,8 @@ def build_estimate(df, col_to_predict: str, fileName: str, max_epoch_number=21):
             best_fit_model = model
             best_rmse = score_rmse
 
-    ca.writeToFile(f"Estimation {fileName} {col_to_predict} MAPE:" + str(best_mape) + "; epoch:" + str(best_epoch))
+    if IS_DEBUG_MODE_ON:
+        ca.writeToFile(f"Estimation {fileName} {col_to_predict} MAPE:" + str(best_mape) + "; epoch:" + str(best_epoch))
 
     if best_fit_model is None:
         raise AssertionError("None of models were optimal")

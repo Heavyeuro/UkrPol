@@ -4,7 +4,10 @@
     <list default="true" id="13fe9cf4-5773-4b88-ad6b-60e309504c24" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/learning_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/learning_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Core/main_pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/Core/main_pipeline.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Core/results.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Core/results.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CsvStorage/covidDatapol.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CsvStorage/covidDatapol.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CsvStorage/covidDataukr.csv" beforeDir="false" afterPath="$PROJECT_DIR$/CsvStorage/covidDataukr.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,23 +93,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Core/main_pipeline.py</url>
-          <line>27</line>
+          <line>29</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Core/learning_model.py</url>
-          <line>195</line>
-          <option name="timeStamp" value="26" />
+          <url>file://$PROJECT_DIR$/Core/prepare_dataset.py</url>
+          <line>9</line>
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Core/learning_model.py</url>
-          <line>30</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Core/learning_model.py</url>
-          <line>126</line>
-          <option name="timeStamp" value="29" />
+          <url>file://$PROJECT_DIR$/Core/prepare_dataset.py</url>
+          <line>28</line>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

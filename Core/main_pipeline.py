@@ -11,27 +11,30 @@ if __name__ == '__main__':
 
     patients_info_filename = rf'\{fileNames[0]}.csv'
 
-    dataframe = pds.prepare_dataset_core(patients_info_filename)
+    for i in range(0, 10):
+        dataframe = pds.prepare_dataset_core(patients_info_filename)
 
-    # building ML
-    col_to_predict = ['new_cases']#'new_deaths',
+        # building ML
+        col_to_predict = ['new_deaths'] #'new_cases',
 
-    sns.set()
-    cols = ['new_cases', 'new_deaths', 'date']
-    sns.pairplot(dataframe[cols], size=2.5)
-    plt.show(block=False)
-    for col in col_to_predict:
-        lm.MAIN_build_and_score_ml_model_core(dataframe, col, fileNames[0])
+        sns.set()
+        cols = ['new_cases', 'new_deaths', 'date']
+
+        sns.pairplot(dataframe[cols], size=2.5)
+        plt.show(block=False)
+        for col in col_to_predict:
+            lm.MAIN_build_and_score_ml_model_core(dataframe, col, fileNames[0])
 
 
-    patients_info_filename = rf'\{fileNames[1]}.csv'
-    dataframe = pds.prepare_dataset_core(patients_info_filename)
-    # building ML
-    sns.set()
-    cols = ['new_cases', 'new_deaths', 'date']
-    sns.pairplot(dataframe[cols], size=2.5)
-    plt.show(block=False)
-    for col in col_to_predict:
-        lm.MAIN_build_and_score_ml_model_core(dataframe, col, fileNames[1])
+        patients_info_filename = rf'\{fileNames[1]}.csv'
+        dataframe = pds.prepare_dataset_core(patients_info_filename)
+        # building ML
+        sns.set()
+        cols = ['new_cases', 'new_deaths', 'date']
+        sns.pairplot(dataframe[cols], size=2.5)
+        plt.show(block=False)
+        for col in col_to_predict:
+            lm.MAIN_build_and_score_ml_model_core(dataframe, col, fileNames[1])
     plt.show()
+
     input('Enter your input:')

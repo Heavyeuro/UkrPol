@@ -1,6 +1,5 @@
 
-09:01:44: Estimation covidDatapol new_cases MAPE:0.1; epoch:0
-09:05:15: Estimation covidDatapol new_cases MAPE:0.1; epoch:0
+09:47:05: Estimation before war covidDatapol new_deaths MAPE:0.318057907022409ation covidDatapol new_cases MAPE:0.1; epoch:0
 09:11:26: Estimation covidDatapol new_cases MAPE:0.1; epoch:0
 09:12:11: Estimation covidDatapol new_cases MAPE:0.1; epoch:0
 09:13:56: Estimation covidDatapol new_cases MAPE:0.1; epoch:0
@@ -38,3 +37,133 @@
 23:15:03: Estimation covidDataukr new_cases MAPE:0.1097435945811437; epoch:2
 23:34:51: Estimation covidDatapol new_cases MAPE:0.06073022616865321; epoch:20
 23:52:22: Estimation covidDataukr new_cases MAPE:0.03655143416192435; epoch:14
+00:14:49: Estimation covidDatapol new_cases MAPE:0.059987847584810024; epoch:2
+
+00:31:06: Estimation before war covidDatapol new_cases MAPE:0.09098214296567673
+00:31:06: Estimation after war covidDatapol new_cases MAPE:0.008825926105658416
+00:37:55: Estimation before war covidDataukr new_cases MAPE:0.04334302819918978
+00:37:55: Estimation after war covidDataukr new_cases MAPE:0.034539697987331225
+14:35:10: Estimation before war covidDatapol new_cases MAPE:0.04054894959421769
+14:35:10: Estimation after war covidDatapol new_cases MAPE:0.06866899383806352
+14:42:01: Estimation before war covidDataukr new_cases MAPE:0.05461531259350186
+14:42:01: Estimation after war covidDataukr new_cases MAPE:0.1832789470609811
+14:52:05: Estimation before war covidDatapol new_cases MAPE:0.04239970423060477
+14:52:05: Estimation after war covidDatapol new_cases MAPE:0.01876028138384024
+14:59:15: Estimation before war covidDataukr new_cases MAPE:0.0709247189430162
+14:59:15: Estimation after war covidDataukr new_cases MAPE:0.24460140846312306
+15:22:44: Estimation before war covidDatapol new_cases MAPE:0.04713131433825533
+15:22:44: Estimation after war covidDatapol new_cases MAPE:0.0859786839095073
+15:30:10: Estimation before war covidDataukr new_cases MAPE:0.05989310109927053
+15:30:10: Estimation after war covidDataukr new_cases MAPE:0.28933531014360037
+15:48:52: Estimation before war covidDatapol new_cases MAPE:0.058796512545679434
+15:48:52: Estimation after war covidDatapol new_cases MAPE:0.13283472390107656
+15:55:27: Estimation before war covidDataukr new_cases MAPE:0.058557585691993264
+15:55:27: Estimation after war covidDataukr new_cases MAPE:0.12772214333930898
+16:28:27: Estimation before war covidDatapol new_cases MAPE:0.044196936524683365
+16:28:27: Estimation after war covidDatapol new_cases MAPE:0.015927919496204927
+16:36:01: Estimation before war covidDataukr new_cases MAPE:0.05882132694438879
+16:36:01: Estimation after war covidDataukr new_cases MAPE:0.1730615048503443
+16:57:26: Estimation before war covidDatapol new_cases MAPE:0.06436411784686506
+16:57:26: Estimation after war covidDatapol new_cases MAPE:0.17792822260939586
+17:04:41: Estimation before war covidDataukr new_cases MAPE:0.054016589673932996
+17:04:41: Estimation after war covidDataukr new_cases MAPE:0.22819899581443354
+17:15:05: Estimation before war covidDatapol new_cases MAPE:0.0745163802154085
+17:15:05: Estimation after war covidDatapol new_cases MAPE:0.23722727857826093
+17:21:39: Estimation before war covidDataukr new_cases MAPE:0.05246624661525481
+17:21:39: Estimation after war covidDataukr new_cases MAPE:0.065605309743104
+
+21:44:08: Estimation before war covidDatapol new_cases MAPE:0.04895685172585445
+21:44:08: Estimation after war covidDatapol new_cases MAPE:0.06369069768159238
+21:51:29: Estimation before war covidDataukr new_cases MAPE:0.06201131571884288
+21:51:29: Estimation after war covidDataukr new_cases MAPE:0.3565483825919208
+22:00:22: Estimation before war covidDatapol new_cases MAPE:0.05130518109474412
+22:00:22: Estimation after war covidDatapol new_cases MAPE:0.009408440994960167
+22:07:23: Estimation before war covidDataukr new_cases MAPE:0.06228701847601401
+22:07:23: Estimation after war covidDataukr new_cases MAPE:0.1858626179389593
+
+
+
+09:27:41: Estimation before war covidDatapol new_deaths MAPE:0.1223790533382523
+09:27:41: Estimation after war covidDatapol new_deaths MAPE:0.21023068102660858
+09:34:47: Estimation before war covidDataukr new_deaths MAPE:0.033017092635673866
+09:34:47: Estimation after war covidDataukr new_deaths MAPE:0.15627667327024802
+
+09:47:05: Estimation after war covidDatapol new_deaths MAPE:0.36584904863306505
+09:54:11: Estimation before war covidDataukr new_deaths MAPE:0.02093482230387101
+09:54:11: Estimation after war covidDataukr new_deaths MAPE:0.17017979545363093
+10:01:13: Estimation before war covidDatapol new_deaths MAPE:0.019128608279667367
+10:01:13: Estimation after war covidDatapol new_deaths MAPE:0.0357547656832946
+10:08:13: Estimation before war covidDataukr new_deaths MAPE:0.010756530728881731
+10:08:13: Estimation after war covidDataukr new_deaths MAPE:0.023685302063437476
+10:15:14: Estimation before war covidDatapol new_deaths MAPE:0.020171347068605475
+10:15:14: Estimation after war covidDatapol new_deaths MAPE:0.1290592502014766
+10:22:16: Estimation before war covidDataukr new_deaths MAPE:0.014569364151328363
+10:22:16: Estimation after war covidDataukr new_deaths MAPE:0.13017796378352073
+10:29:16: Estimation before war covidDatapol new_deaths MAPE:0.007567574993459287
+10:29:16: Estimation after war covidDatapol new_deaths MAPE:0.012750821921841028
+10:36:16: Estimation before war covidDataukr new_deaths MAPE:0.03769475147860614
+10:36:16: Estimation after war covidDataukr new_deaths MAPE:0.144654045075471
+10:43:17: Estimation before war covidDatapol new_deaths MAPE:0.019941613129655596
+10:43:17: Estimation after war covidDatapol new_deaths MAPE:0.0197396616416512
+10:50:23: Estimation before war covidDataukr new_deaths MAPE:0.006268119720932139
+10:50:23: Estimation after war covidDataukr new_deaths MAPE:0.007556616272808247
+10:57:31: Estimation before war covidDatapol new_deaths MAPE:0.015813201968398846
+10:57:31: Estimation after war covidDatapol new_deaths MAPE:0.04985272723243876
+11:04:39: Estimation before war covidDataukr new_deaths MAPE:0.008457498492077931
+11:04:39: Estimation after war covidDataukr new_deaths MAPE:0.08722217361765193
+11:11:45: Estimation before war covidDatapol new_deaths MAPE:0.018961843910589717
+11:11:45: Estimation after war covidDatapol new_deaths MAPE:0.06882196089874397
+11:18:53: Estimation before war covidDataukr new_deaths MAPE:0.012374199143948562
+11:18:53: Estimation after war covidDataukr new_deaths MAPE:0.0343098563856631
+11:25:57: Estimation before war covidDatapol new_deaths MAPE:0.005820229373764246
+11:25:57: Estimation after war covidDatapol new_deaths MAPE:0.04344491267727402
+11:32:57: Estimation before war covidDataukr new_deaths MAPE:0.02384096761467791
+11:32:57: Estimation after war covidDataukr new_deaths MAPE:0.07623250432387849
+11:40:01: Estimation before war covidDatapol new_deaths MAPE:0.054432565964192194
+11:40:01: Estimation after war covidDatapol new_deaths MAPE:0.18077001907741908
+11:47:06: Estimation before war covidDataukr new_deaths MAPE:0.030988844356663818
+11:47:06: Estimation after war covidDataukr new_deaths MAPE:0.10540362593453649
+11:54:08: Estimation before war covidDatapol new_deaths MAPE:0.011965419289699573
+11:54:08: Estimation after war covidDatapol new_deaths MAPE:0.023507709259883013
+12:01:09: Estimation before war covidDataukr new_deaths MAPE:0.025931590647786638
+12:01:09: Estimation after war covidDataukr new_deaths MAPE:0.09387183626868821
+15:33:28: Estimation before war covidDatapol new_deaths MAPE:0.19680162119880348
+15:33:28: Estimation after war covidDatapol new_deaths MAPE:0.28616108609687035
+15:40:25: Estimation before war covidDataukr new_deaths MAPE:0.048856233402562975
+15:40:25: Estimation after war covidDataukr new_deaths MAPE:0.1799428425512964
+15:47:22: Estimation before war covidDatapol new_deaths MAPE:0.01900016019795796
+15:47:22: Estimation after war covidDatapol new_deaths MAPE:0.16301271409763876
+15:54:22: Estimation before war covidDataukr new_deaths MAPE:0.03301540184026233
+15:54:22: Estimation after war covidDataukr new_deaths MAPE:0.01696112287103539
+16:01:20: Estimation before war covidDatapol new_deaths MAPE:0.017077290181869785
+16:01:20: Estimation after war covidDatapol new_deaths MAPE:0.06446875858778904
+16:08:17: Estimation before war covidDataukr new_deaths MAPE:0.023001280138248172
+16:08:17: Estimation after war covidDataukr new_deaths MAPE:0.012219835843299703
+16:15:14: Estimation before war covidDatapol new_deaths MAPE:0.009990364044316162
+16:15:14: Estimation after war covidDatapol new_deaths MAPE:0.08029295303610051
+16:22:12: Estimation before war covidDataukr new_deaths MAPE:0.013703980870120364
+16:22:12: Estimation after war covidDataukr new_deaths MAPE:0.018306515232040726
+16:29:08: Estimation before war covidDatapol new_deaths MAPE:0.003406703482664566
+16:29:08: Estimation after war covidDatapol new_deaths MAPE:0.030313779206792686
+16:36:11: Estimation before war covidDataukr new_deaths MAPE:0.012514860146354003
+16:36:11: Estimation after war covidDataukr new_deaths MAPE:0.01901741245323924
+16:43:09: Estimation before war covidDatapol new_deaths MAPE:0.033700283815219584
+16:43:09: Estimation after war covidDatapol new_deaths MAPE:0.12816870804493632
+16:50:13: Estimation before war covidDataukr new_deaths MAPE:0.035831322708029474
+16:50:13: Estimation after war covidDataukr new_deaths MAPE:0.1408592673774812
+16:57:07: Estimation before war covidDatapol new_deaths MAPE:0.01036161724120618
+16:57:07: Estimation after war covidDatapol new_deaths MAPE:0.011679412712240786
+17:04:04: Estimation before war covidDataukr new_deaths MAPE:0.017180242952475184
+17:04:04: Estimation after war covidDataukr new_deaths MAPE:0.054263473496903955
+17:11:01: Estimation before war covidDatapol new_deaths MAPE:0.010236411803712967
+17:11:01: Estimation after war covidDatapol new_deaths MAPE:0.013896020057415285
+17:17:55: Estimation before war covidDataukr new_deaths MAPE:0.014687942773350142
+17:17:55: Estimation after war covidDataukr new_deaths MAPE:0.050908273926003285
+17:24:51: Estimation before war covidDatapol new_deaths MAPE:0.016556235307326146
+17:24:51: Estimation after war covidDatapol new_deaths MAPE:0.045027271543569065
+17:31:45: Estimation before war covidDataukr new_deaths MAPE:0.030369643318890506
+17:31:45: Estimation after war covidDataukr new_deaths MAPE:0.012933302976664425
+17:38:42: Estimation before war covidDatapol new_deaths MAPE:0.02640334872047544
+17:38:42: Estimation after war covidDatapol new_deaths MAPE:0.10034601985893937
+17:45:37: Estimation before war covidDataukr new_deaths MAPE:0.020979216805730054
+17:45:37: Estimation after war covidDataukr new_deaths MAPE:0.07765240886247148
